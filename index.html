@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JobFlow - 求职投递管理工具</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>JobFlow</h1>
+      <p>个人求职投递管理工具</p>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <button class="nav-btn active" data-page="dashboard">Dashboard</button>
+        <button class="nav-btn" data-page="applications">投递管理</button>
+        <button class="nav-btn" data-page="materials">材料管理</button>
+        <button class="nav-btn" data-page="interviews">面试记录</button>
+        <button class="nav-btn" data-page="analytics">数据分析</button>
+      </aside>
+
+      <main class="content">
+        <section id="dashboard" class="page active">
+          <h2>首页 Dashboard</h2>
+          <div class="cards" id="statsCards"></div>
+          <div class="grid two-col">
+            <div class="panel">
+              <h3>本周待办</h3>
+              <ul id="todoList" class="list"></ul>
+            </div>
+            <div class="panel">
+              <h3>即将面试</h3>
+              <ul id="upcomingList" class="list"></ul>
+            </div>
+          </div>
+          <div class="panel">
+            <h3>最近投递</h3>
+            <ul id="recentApplications" class="list"></ul>
+          </div>
+        </section>
+
+        <section id="applications" class="page">
+          <div class="section-header">
+            <h2>投递列表</h2>
+            <button id="addApplicationBtn">新增投递</button>
+          </div>
+
+          <div class="filters">
+            <input id="searchInput" placeholder="搜索公司 / 职位" />
+            <input id="filterCompany" placeholder="公司" />
+            <select id="filterType">
+              <option value="">岗位类型（全部）</option>
+              <option>IT事务</option>
+              <option>PMO补佐</option>
+              <option>社内SE</option>
+              <option>Marketing</option>
+              <option>总务 / Corporate</option>
+            </select>
+            <select id="filterStage">
+              <option value="">当前阶段（全部）</option>
+              <option>已投递</option>
+              <option>书类选考</option>
+              <option>一面</option>
+              <option>二面</option>
+              <option>最终面</option>
+              <option>Offer</option>
+              <option>不通过</option>
+            </select>
+            <input id="filterChannel" placeholder="投递渠道" />
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>公司</th>
+                  <th>职位</th>
+                  <th>岗位类型</th>
+                  <th>投递日期</th>
+                  <th>当前阶段</th>
+                  <th>下次行动</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody id="applicationTableBody"></tbody>
+            </table>
+          </div>
+
+          <div id="applicationDetail" class="panel hidden"></div>
+        </section>
+
+        <section id="materials" class="page">
+          <div class="section-header">
+            <h2>材料管理</h2>
+            <button id="addMaterialBtn">新增材料</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>材料名称</th>
+                  <th>类型</th>
+                  <th>版本号</th>
+                  <th>适用岗位</th>
+                  <th>最后修改</th>
+                  <th>使用公司</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody id="materialTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="interviews" class="page">
+          <div class="section-header">
+            <h2>面试记录</h2>
+            <button id="addInterviewBtn">新增面试</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>公司</th>
+                  <th>岗位</th>
+                  <th>轮次</th>
+                  <th>日期</th>
+                  <th>形式</th>
+                  <th>结果</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody id="interviewTableBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="analytics" class="page">
+          <h2>数据分析</h2>
+          <div class="grid two-col">
+            <div class="panel">
+              <h3>核心指标</h3>
+              <ul id="analyticsSummary" class="list"></ul>
+            </div>
+            <div class="panel">
+              <h3>岗位类型通过率</h3>
+              <div id="typeBars"></div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <dialog id="recordDialog">
+      <form method="dialog" id="recordForm">
+        <h3 id="dialogTitle">新增记录</h3>
+        <div id="formFields" class="form-grid"></div>
+        <menu>
+          <button value="cancel" type="button" id="cancelBtn">取消</button>
+          <button value="default" type="submit">保存</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
